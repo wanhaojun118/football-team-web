@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import axios from "axios";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+    useEffect(() => {
+        axios.get("https://soccer.sportmonks.com/api/v2.0/countries", {
+            params: {
+                api_token: "scgB8O3cQRD2L8HG1frysaY4lqG4m4fVbj3pywOdfjGmwY5tlzYM3rmVVNak"
+            }
+        })
+        .then(response => console.log("response data: ", response.data))
+        .catch(error => console.log("error: ", error));
+    }, []);
+
+    return (
+        <div>App</div>
+    );
 }
 
 export default App;
