@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const countryPlayersSlice = createSlice({
-    name: "countryPlayer",
+    name: "countryPlayers",
     initialState: {
         countryPlayers: undefined
     },
-    reducer: {
+    reducers: {
         setCountryPlayers: (state, action) => {
             state.countryPlayers = action.payload
         }

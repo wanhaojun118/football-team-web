@@ -5,7 +5,7 @@ const loadingSlice = createSlice({
     initialState: {
         isPageLoading: false
     },
-    reducer: {
+    reducers: {
         startPageLoading: (state) => {
             state.isPageLoading = true;
         },

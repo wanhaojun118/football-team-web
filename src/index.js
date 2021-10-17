@@ -1,11 +1,12 @@
 import ReactDOM from "react-dom";
-import App from "./module/Home";
+import Home from "./module/Home";
 import store from "./store";
 import { Provider } from "react-redux";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 ReactDOM.render(
     <Provider store={store}>
-        <App/>
+        <Home/>
     </Provider>,
     document.getElementById("root")
 );

@@ -1,0 +1,57 @@
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #fff; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #cdcdcd; 
+    border-radius: 50px;
+    background-clip: padding-box;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #888; 
+}
+
+.player-selection-card {
+    width: 250px;
+    max-width: 250px;
+    height: 300px;
+    max-height: 300px;
+    border: 1px solid #cdcdcd;
+    border-radius: 10px;
+    padding: 20px;
+
+    .player-selection-card-image {
+        width: 70px;
+        height: auto;
+        align-self: center;
+        margin-bottom: 20px;
+    }
+
+    .player-selection-card-details {
+        // height: 170px;
+        // max-height: 170px;
+        overflow-x: hidden;
+        overflow-y: scroll;
+
+        .row {
+            margin-bottom: 8px;
+
+            .details-value {
+                font-weight: 500;
+
+                .unknown-details {
+                    color: #a9a9a9;
+                }
+            }
+        }
+    }
+}
