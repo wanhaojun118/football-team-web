@@ -3,25 +3,10 @@ import { createSlice } from "@reduxjs/toolkit";
 const playerSlice = createSlice({
     name: "selectedPlayer",
     initialState: {
-        currentPlayer: {
-            playerId: undefined,
-            image_path: undefined,
-            name: undefined,
-            age: undefined,
-            weight: undefined,
-            height: undefined,
-            position: undefined,
-            appearances: undefined,
-            minutes: undefined,
-            goals: undefined,
-            assists: undefined,
-            yellow_cards: undefined,
-            red_cards: undefined,
-            rating: undefined,
-        },
+        currentPlayer: undefined,
         currentCrew: []
     },
-    reducer: {
+    reducers: {
         setCurrentPlayer: (state, action) => {
             state.currentPlayer = action.payload;
         },

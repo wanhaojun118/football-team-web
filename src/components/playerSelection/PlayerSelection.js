@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCountryPlayers } from "../../slices/countryPlayersSlice";
+import { setCurrentPlayer } from "../../slices/playerSlice";
 import { startPageLoading, stopPageLoading } from "../../slices/loadingSlice";
 import { fetchGet } from "../../utils/GeneralFunctions";
 import { apiUrls, playerPositions } from "../../constants";
@@ -61,15 +62,41 @@ const PlayerSelection = () => {
         return new Date().getFullYear() - year;
     }
 
-    const fetchPlayerStatics = async (playerId) => {
-        return await fetchGet(apiUrls.GET_PLAYER_STATISTICS(playerId), { include: "stats"} );
+    const selectPlayerHandler = async (playerId) => {
+        dispatch(startPageLoading());
+        const playerStatsResponse = await fetchGet(apiUrls.GET_PLAYER_STATISTICS(playerId), { include: "stats"} );
+
+        if(playerStatsResponse.success){
+            const playerGeneralStats = countryPlayers.find(player => playerStatsResponse.data?.data?.player_id === player.playerId);
+            const playerDetailsStats = playerStatsResponse.data?.data?.stats?.data[0];
+
+            console.log("playerDetailsStats: ", playerDetailsStats);
+
+            const playerStats = {
+                ...playerGeneralStats,
+                appearences: playerDetailsStats?.appearences ?? null,
+                minutes: playerDetailsStats?.minutes ?? null,
+                goals: playerDetailsStats?.goals ?? null,
+                assists: playerDetailsStats?.assists ?? null,
+                saves: playerDetailsStats?.saves ?? null,
+                yellowCards: playerDetailsStats?.yellowcards ?? null,
+                redCards: playerDetailsStats?.redcards ?? null,
+                rating: playerDetailsStats?.rating ?? null
+            };
+
+            dispatch(setCurrentPlayer(playerStats));
+
+            dispatch(stopPageLoading());
+        }else{
+            dispatch(stopPageLoading());
+        }
     }
 
     return (
         <>
             {
                 isCountrySelected && countryPlayers?.length > 0 ? (
-                    <Row>
+                    <Row className="step-container">
                         <StepTitleContainer title="Select A Player" />
                         <Carousel 
                             itemsToShow={3} 
@@ -78,7 +105,11 @@ const PlayerSelection = () => {
                         >
                             {
                                 countryPlayers.map(player => (
-                                    <PlayerSelectionCard key={player.id} details={player}/>
+                                    <PlayerSelectionCard 
+                                        key={`player-selection-card-${player.playerId}`} 
+                                        details={player}
+                                        selectPlayerHandler={selectPlayerHandler}
+                                    />
                                 ))
                             }
                         </Carousel>

@@ -14,6 +14,7 @@ const IconValue = (props) => (
         <img 
             src={props.data.imagePath}
             className="country-dropdown-image"
+            alt=""
         />
         { props.data.label }
     </components.SingleValue>
@@ -24,6 +25,7 @@ const IconOption = (props) => (
         <img 
             src={props.data.imagePath}
             className="country-dropdown-image"
+            alt=""
         />
         { props.data.label }
     </components.Option>
@@ -85,7 +87,7 @@ const CountrySelection = () => {
                                 Option: IconOption,
                                 SingleValue: IconValue
                             }}
-                            isSearchable={false}
+                            isSearchable={true}
                             onChange={(e) => dispatch(setCountry(e.value))}
                         />
                     ) : null
