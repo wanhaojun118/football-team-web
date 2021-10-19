@@ -21,5 +21,23 @@
 }
 
 .unknown-details {
-    color: #a9a9a9;
+    color: #a9a9a9 !important;
+}
+
+.button-primary {
+    width: 200px;
+    max-width: 200px;
+    background-color: #000080 !important;
+    border: 1px solid #000080 !important;
+    font-size: 24px !important;
+    font-weight: bold !important;
+
+    &:focus {
+        box-shadow: none !important;
+    }
+
+    @media (max-width: 991px) {
+        width: 100%;
+        max-width: 100%;
+    }
 }
