@@ -12,20 +12,20 @@ import Row from "react-bootstrap/Row";
 import "../../styles/playerSelection.scss";
 
 const PlayerSelection = () => {
-    const isCountrySelected = useSelector((state) => state.country.selectedCountry);
+    const selectedCountry = useSelector((state) => state.country.selectedCountry);
     const countryPlayers = useSelector((state) => state.countryPlayers.countryPlayers)
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if(isCountrySelected){
+        if(selectedCountry){
             fetchPlayers();
         }
-    }, [isCountrySelected]);
+    }, [selectedCountry]);
 
     const fetchPlayers = async () => {
         dispatch(startPageLoading());
 
-        const playersResponse = await fetchGet(apiUrls.GET_PLAYERS_FROM_COUNTRY(isCountrySelected));
+        const playersResponse = await fetchGet(apiUrls.GET_PLAYERS_FROM_COUNTRY(selectedCountry.countryId));
 
         if(playersResponse.success){
             const countryPlayersData = playersResponse.data?.data?.map(player => (
@@ -95,7 +95,7 @@ const PlayerSelection = () => {
     return (
         <>
             {
-                isCountrySelected && countryPlayers?.length > 0 ? (
+                selectedCountry && countryPlayers?.length > 0 ? (
                     <Row className="step-container">
                         <StepTitleContainer title="Select A Player" />
                         <Carousel 

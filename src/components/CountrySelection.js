@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setCountryList, setCountry } from "../slices/countrySlice";
 import { startPageLoading, stopPageLoading } from "../slices/loadingSlice";
+import { showPopupModal, hidePopupModal, setTitle, setMessage } from "../slices/popupModalSlice";
 import { fetchGet } from "../utils/GeneralFunctions";
 import { apiUrls } from "../constants";
 import Select, { components } from "react-select";
@@ -31,8 +32,9 @@ const IconOption = (props) => (
     </components.Option>
 );
 
-const CountrySelection = () => {
+const CountrySelection = (props) => {
     const countryList = useSelector((state) => state.country.countryList);
+    const selectedCountry = useSelector((state) => state.country.selectedCountry);
     const dispatch = useDispatch();
     const [countryOptions, setCountryOptions] = useState();
 
@@ -44,7 +46,11 @@ const CountrySelection = () => {
         if(countryList && countryList.length > 0){
             const countryOptions = countryList.map(country => (
                 {
-                    value: country.countryId,
+                    value: {
+                        countryId: country.countryId,
+                        countryName: country.name,
+                        countryImage: country.imagePath
+                    },
                     label: country.name,
                     imagePath: country.imagePath
                 }
@@ -71,7 +77,12 @@ const CountrySelection = () => {
             dispatch(setCountryList(countryData));
             dispatch(stopPageLoading());
         }else{
+            dispatch(setTitle("Error"));
+            dispatch(setMessage("Cannot get country list."));
+
             dispatch(stopPageLoading());
+
+            dispatch(showPopupModal());
         }
     }
 
@@ -87,8 +98,14 @@ const CountrySelection = () => {
                                 Option: IconOption,
                                 SingleValue: IconValue
                             }}
-                            isSearchable={true}
+                            isSearchable={false}
                             onChange={(e) => dispatch(setCountry(e.value))}
+                            value={selectedCountry ? {
+                                label: selectedCountry.countryName,
+                                value: selectedCountry.countryId,
+                                imagePath: selectedCountry.countryImage,
+                            } : null}
+                            placeholder={"Please select a country"}
                         />
                     ) : null
                 }

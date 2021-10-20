@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const playerSlice = createSlice({
-    name: "selectedPlayer",
+    name: "player",
     initialState: {
         currentPlayer: undefined,
         currentCrew: []

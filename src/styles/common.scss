@@ -1,3 +1,9 @@
+body {
+    background: url("../assets/images/football-field-bg.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
 /* width */
 ::-webkit-scrollbar {
     width: 5px;
@@ -29,7 +35,6 @@
     max-width: 200px;
     background-color: #000080 !important;
     border: 1px solid #000080 !important;
-    font-size: 24px !important;
     font-weight: bold !important;
 
     &:focus {

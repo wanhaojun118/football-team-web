@@ -1,7 +1,9 @@
+import { useState } from "react";
 import CountrySelection from "../components/CountrySelection";
 import PlayerSelection from "../components/playerSelection/PlayerSelection";
-import PlayerDetailsCard from "../components/PlayerDetailsCard";
+import RecruitPlayer from "../components/playerDetails/RecruitPlayer";
 import PageLoading from "../components/PageLoading";
+import PopupModal from "../components/popupModal/PopupModal";
 import Container from "react-bootstrap/Container";
 import "../styles/common.scss";
 import "../styles/normalizeBootstrap.scss";
@@ -12,7 +14,8 @@ const Home = () => {
             <PageLoading />
             <CountrySelection />
             <PlayerSelection />
-            <PlayerDetailsCard />
+            <RecruitPlayer />
+            <PopupModal />
         </Container>
     );
 }
