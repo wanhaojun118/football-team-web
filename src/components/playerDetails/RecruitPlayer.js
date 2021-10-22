@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { addPlayer } from "../../slices/playerSlice";
 import { showPopupModal, setTitle, setMessage } from "../../slices/popupModalSlice";
 import PlayerDetailsCard from "./PlayerDetailsCard";
-import StepTitleContainer from "../StepTitleContainer";
+import StepTitle from "../StepTitle";
 import { Row, Button } from "react-bootstrap";
 
 const RecruitPlayer = () => {
@@ -24,20 +24,32 @@ const RecruitPlayer = () => {
 
             currentCrewMemberCount.current = currentCrew.length;
         }
+        
     }, [currentCrew]);
 
     const recruitPlayerHandler = (currentPlayer) => {
-        const similarPlayer = currentCrew?.find(member => member.playerId === currentPlayer.playerId);
+        if(currentCrew.length >= 11){
+            // If team is full, don't allow to add new member
 
-        if(similarPlayer){
-            // Player already in crew
             dispatch(setTitle("Error"));
-            dispatch(setMessage("This player is already in our team."));
+            dispatch(setMessage(`Sorry we cannot recruit <b>${currentPlayer.name}</b> as the team is already full.`));
 
             dispatch(showPopupModal());
         }else{
-            // Player not found
-            dispatch(addPlayer(currentPlayer));
+            // Team slot available
+
+            const similarPlayer = currentCrew?.find(member => member.playerId === currentPlayer.playerId);
+
+            if(similarPlayer){
+                // Not allow to add same member into team
+                dispatch(setTitle("Error"));
+                dispatch(setMessage(`Cannot add <b>${currentPlayer.name}</b> as this player is already in our team.`));
+
+                dispatch(showPopupModal());
+            }else{
+                // Player is not existing member, proceed to add him into team
+                dispatch(addPlayer(currentPlayer));
+            }
         }
     }
 
@@ -46,7 +58,7 @@ const RecruitPlayer = () => {
             {
                 currentPlayer ? (
                     <Row className="step-container">
-                        <StepTitleContainer title="Recruit This Player" />
+                        <StepTitle title="Recruit This Player" />
                         <PlayerDetailsCard player={currentPlayer} />
                         <div className="recruit-button-container">
                             <Button className="recruit-button button-primary" onClick={() => recruitPlayerHandler(currentPlayer)}>Recruit</Button>

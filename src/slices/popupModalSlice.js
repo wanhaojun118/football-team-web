@@ -23,6 +23,7 @@ const popupModalSlice = createSlice({
     }
 });
 
-export const { showPopupModal, hidePopupModal, setTitle, setMessage } = popupModalSlice.actions;
+export const { showPopupModal, hidePopupModal, setTitle, 
+    setMessage } = popupModalSlice.actions;
 
 export default popupModalSlice.reducer;

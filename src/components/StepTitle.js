@@ -1,7 +1,7 @@
-import "../styles/stepContainer.scss";
+import "../styles/stepTitle.scss";
 
 const StepTitleContainer = (props) => (
-    <div className="step-container">
+    // <div className="step-container">
         <div className="step-title">
             <span className="title-line">&emsp;</span>
             <span className="title">{props.title}</span>
@@ -9,7 +9,7 @@ const StepTitleContainer = (props) => (
                 [...Array(5)].map((element, index) => <span className="title-line" key={`title-line-${index}`}>&emsp;</span>)
             }
         </div>
-    </div>
+    // </div>
 )
 
 export default StepTitleContainer;

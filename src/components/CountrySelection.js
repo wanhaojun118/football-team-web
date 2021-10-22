@@ -7,7 +7,7 @@ import { fetchGet } from "../utils/GeneralFunctions";
 import { apiUrls } from "../constants";
 import Select, { components } from "react-select";
 import "../styles/countrySelection.scss";
-import StepTitleContainer from "./StepTitleContainer";
+import StepTitle from "./StepTitle";
 import Row from "react-bootstrap/Row";
 
 const IconValue = (props) => (
@@ -88,7 +88,7 @@ const CountrySelection = (props) => {
 
     return (
         <Row className="step-container">
-            <StepTitleContainer title="Select A Country" />
+            <StepTitle title="Select A Country" />
             <div className="country-dropdown">
                 {
                     countryOptions && countryOptions.length > 0 ? (

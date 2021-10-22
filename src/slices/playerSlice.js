@@ -12,10 +12,17 @@ const playerSlice = createSlice({
         },
         addPlayer: (state, action) => {
             state.currentCrew.push(action.payload);
+        },
+        // updateTeamPlayer: (state, action) => {
+        //     state.currentCrew = action.payload;
+        // }
+        removePlayer: (state, action) => {
+            console.log("state current crew: ", ...state.currentCrew);
+            state.currentCrew = [...state.currentCrew].filter(player => player.playerId !== action.payload);
         }
     }
 });
 
-export const { setCurrentPlayer, addPlayer } = playerSlice.actions;
+export const { setCurrentPlayer, addPlayer, removePlayer } = playerSlice.actions;
 
 export default playerSlice.reducer;

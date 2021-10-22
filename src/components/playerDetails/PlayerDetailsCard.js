@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import RemovePlayerIcon from "./RemovePlayerIcon";
 import OptionalDetail from "../OptionalDetail";
 import ReactStars from "react-rating-stars-component";
 import { Row, Col,  } from "react-bootstrap";
@@ -9,7 +10,12 @@ const PlayerDetailsCard = (props) => {
     const selectedCountry = useSelector((state) => state.country.selectedCountry);
 
     return (
-        <Col xs={12} className="player-details-card">
+        <Col xs={12} className={`player-details-card ${props.isCurrentCrewPage ? "grey-background" : ""}`}>
+            {
+                props.removable ? (
+                    <RemovePlayerIcon removePlayerHandler={props.removePlayerHandler} />
+                ) : null
+            }
             <Row>
                 <Col lg={4} xs={12} className="d-flex flex-column justify-content-between player-portrait-and-rating">
                     <div className="d-flex justify-content-center player-portrait-container">

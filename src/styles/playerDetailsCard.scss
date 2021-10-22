@@ -4,13 +4,31 @@
     padding: 20px;
     font-weight: bold;
     margin-bottom: 10px;
+    position: relative;
+
+    &.grey-background {
+        background-color: rgba(241, 241, 241, 0.7);
+        border: none;
+    }
+
+    .remove-icon-container {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+
+        .remove-icon {
+            width: 20px;
+            height: auto;
+            cursor: pointer;
+        }
+    }
 
     .player-portrait-and-rating{
         font-size: 18px;
 
         .player-portrait-container {
             .player-portrait {
-                width: 300px;
+                width: 250px;
                 height: auto;
             }
 
@@ -21,7 +39,7 @@
     
         .player-rating-label {
             margin-right: 10px;
-            font-size: 20px;
+            font-size: 18px;
 
             // @media (max-width: 1100px) {
             //     font-size: 20px;
@@ -29,7 +47,7 @@
         }
 
         .player-rating-value {
-            font-size: 24px !important;
+            font-size: 20px !important;
         }
     }
 
@@ -47,11 +65,11 @@
                 color: #000080;
 
                 .player-details-name {
-                    font-size: 28px;
+                    font-size: 20px;
                 }
 
                 .player-details-country-name {
-                    font-size: 28px;
+                    font-size: 20px;
                     margin-right: 20px;
                 }
 
@@ -61,7 +79,7 @@
                 }
 
                 .general-details-value {
-                    font-size: 24px;
+                    font-size: 18px;
 
                     &.weight {
                         margin-right: 5px;
@@ -86,13 +104,13 @@
                 margin-bottom: 20px;
 
                 .statistics-title {
-                    font-size: 18px;
+                    font-size: 14px;
                     color: #000;
                     margin-bottom: 5px;
                 }
 
                 .statistics-value {
-                    font-size: 20px;
+                    font-size: 18px;
                     color: #000080;
                 }
             }
@@ -111,6 +129,6 @@
     padding-right: 0px !important;
 
     .recruit-button {
-        font-size: 24px !important;
+        font-size: 20px !important;
     }
 }

@@ -5,7 +5,7 @@ import { setCurrentPlayer } from "../../slices/playerSlice";
 import { startPageLoading, stopPageLoading } from "../../slices/loadingSlice";
 import { fetchGet } from "../../utils/GeneralFunctions";
 import { apiUrls, playerPositions } from "../../constants";
-import StepTitleContainer from "../StepTitleContainer";
+import StepTitle from "../StepTitle";
 import Carousel from "react-elastic-carousel";
 import PlayerSelectionCard from "./PlayerSelectionCard";
 import Row from "react-bootstrap/Row";
@@ -97,7 +97,7 @@ const PlayerSelection = () => {
             {
                 selectedCountry && countryPlayers?.length > 0 ? (
                     <Row className="step-container">
-                        <StepTitleContainer title="Select A Player" />
+                        <StepTitle title="Select A Player" />
                         <Carousel 
                             itemsToShow={3} 
                             itemsToScroll={3}
