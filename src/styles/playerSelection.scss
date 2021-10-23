@@ -1,8 +1,35 @@
+.rec-carousel-wrapper {
+    position: relative;
+
+    .rec-carousel {
+        .rec-arrow-up {
+            @media (max-width: 1199px) {
+                position: absolute;
+                top: 0px;
+                left: 46%;
+            }
+        }
+
+        .rec-arrow-down {
+            @media (max-width: 1199px) {
+                position: absolute;
+                bottom: 0px;
+                left: 46%;
+            }
+        }
+
+        @media (max-width: 1199px) {
+            margin: 50px 0px;
+        }
+    }
+}
+
 .player-selection-card {
     width: 250px;
     max-width: 250px;
     height: 300px;
     max-height: 300px;
+    flex-direction: column;
     border: 1px solid #000080;
     border-radius: 10px;
     padding: 20px;
@@ -19,6 +46,10 @@
         height: auto;
         align-self: center;
         margin-bottom: 20px;
+
+        @media (max-width: 1199px) {
+            margin: auto 0px;
+        }
     }
 
     .player-selection-card-details {
@@ -31,14 +62,40 @@
         .row {
             margin-bottom: 8px;
 
-            .details-value {
-                font-weight: 500;
+            .vertical-details {
+                .details-value {
+                    font-weight: 500;
+    
+                    .unknown-details {
+                        color: #a9a9a9;
+                    }
 
-                .unknown-details {
-                    color: #a9a9a9;
+                    &.player-name {
+                        @media (max-width: 1199px) {
+                            font-size: 20px;
+                        }
+                    }
+
+                    &.player-position {
+                        @media (max-width: 1199px) {
+                            color: #000080;
+                        }
+                    }
+                }
+
+                @media (max-width: 1199px) {
+                    text-align: center;
                 }
             }
         }
+    }
+
+    @media (max-width: 1199px) {
+        flex-direction: row;
+        align-items: center;
+        width: 90%;
+        max-width: 90%;
+        height: auto;
     }
 }
 
