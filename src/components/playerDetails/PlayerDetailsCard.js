@@ -48,7 +48,7 @@ const PlayerDetailsCard = (props) => {
                             <Col className="d-flex justify-content-center align-items-center">
                                 <div className="player-details-country-name">{selectedCountry.countryName}</div>
                                 <div>
-                                    <img src={selectedCountry.countryImage} className="player-details-country-flag" alt="" />
+                                    <img src={props.isCurrentCrewPage ? props.player.countryImagePath : selectedCountry.countryImage} className="player-details-country-flag" alt="" />
                                 </div>
                             </Col>
                         </Row>

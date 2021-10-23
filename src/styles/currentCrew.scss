@@ -1,0 +1,17 @@
+.no-player-container {
+    padding: 30px;
+    background-color: rgba(241, 241, 241, 0.7);
+    border-radius: 10px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .no-player-message {
+        margin-bottom: 20px;
+    }
+    
+    .no-player-navigation-button {
+        font-size: 20px;
+    }
+}

@@ -36,7 +36,8 @@ const PlayerSelection = () => {
                     age: getPlayerAge(player.birthdate),
                     weight: player.weight,
                     height: player.height,
-                    position: playerPositions(player.position_id)
+                    position: playerPositions(player.position_id),
+                    countryImagePath: selectedCountry.countryImage
                 }
             ));
 
