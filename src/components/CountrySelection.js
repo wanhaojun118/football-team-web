@@ -1,10 +1,4 @@
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { setCountryList, setCountry } from "../slices/countrySlice";
-import { startPageLoading, stopPageLoading } from "../slices/loadingSlice";
-import { showPopupModal, hidePopupModal, setTitle, setMessage } from "../slices/popupModalSlice";
-import { fetchGet } from "../utils/GeneralFunctions";
-import { apiUrls } from "../constants";
 import Select, { components } from "react-select";
 import "../styles/countrySelection.scss";
 import StepTitle from "./StepTitle";
@@ -33,18 +27,15 @@ const IconOption = (props) => (
 );
 
 const CountrySelection = (props) => {
-    const countryList = useSelector((state) => state.country.countryList);
-    const selectedCountry = useSelector((state) => state.country.selectedCountry);
-    const dispatch = useDispatch();
     const [countryOptions, setCountryOptions] = useState();
 
     useEffect(() => {
-        fetchAllCountries();
+        props.fetchAllCountries();
     }, []);
 
     useEffect(() => {
-        if(countryList && countryList.length > 0){
-            const countryOptions = countryList.map(country => (
+        if(props.countryList && props.countryList.length > 0){
+            const countryOptions = props.countryList.map(country => (
                 {
                     value: {
                         countryId: country.countryId,
@@ -54,37 +45,11 @@ const CountrySelection = (props) => {
                     label: country.name,
                     imagePath: country.imagePath
                 }
-            ));
+            )).sort((countryA, countryB) => countryA.label > countryB.label ? 1 : -1);
 
             setCountryOptions(countryOptions);
         }
-    }, [countryList]);
-
-    const fetchAllCountries = async () => {
-        dispatch(startPageLoading());
-
-        const response = await fetchGet(apiUrls.GET_ALL_COUNTRIES());
-
-        if(response.success){
-            const countryData = response.data?.data?.map(country => (
-                {
-                    countryId: country.id,
-                    name: country.name,
-                    imagePath: country.image_path
-                }
-            ));
-
-            dispatch(setCountryList(countryData));
-            dispatch(stopPageLoading());
-        }else{
-            dispatch(setTitle("Error"));
-            dispatch(setMessage("Cannot get country list."));
-
-            dispatch(stopPageLoading());
-
-            dispatch(showPopupModal());
-        }
-    }
+    }, [props.countryList]);
 
     return (
         <Row className="step-container">
@@ -99,11 +64,11 @@ const CountrySelection = (props) => {
                                 SingleValue: IconValue
                             }}
                             isSearchable={false}
-                            onChange={(e) => dispatch(setCountry(e.value))}
-                            value={selectedCountry ? {
-                                label: selectedCountry.countryName,
-                                value: selectedCountry.countryId,
-                                imagePath: selectedCountry.countryImage,
+                            onChange={(e) => props.selectCountry(e.value)}
+                            value={props.selectedCountry ? {
+                                label: props.selectedCountry.countryName,
+                                value: props.selectedCountry.countryId,
+                                imagePath: props.selectedCountry.countryImage,
                             } : null}
                             placeholder={"Please select a country"}
                         />

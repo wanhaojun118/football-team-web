@@ -13,6 +13,9 @@ const playerSlice = createSlice({
         addPlayer: (state, action) => {
             state.currentCrew.push(action.payload);
         },
+        clearCurrentPlayer: (state) => {
+            state.currentPlayer = undefined;
+        },
         // updateTeamPlayer: (state, action) => {
         //     state.currentCrew = action.payload;
         // }
@@ -23,6 +26,7 @@ const playerSlice = createSlice({
     }
 });
 
-export const { setCurrentPlayer, addPlayer, removePlayer } = playerSlice.actions;
+export const { setCurrentPlayer, addPlayer, clearCurrentPlayer, 
+    removePlayer } = playerSlice.actions;
 
 export default playerSlice.reducer;

@@ -1,7 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCountryPlayers } from "../../slices/countryPlayersSlice";
-import { setCurrentPlayer } from "../../slices/playerSlice";
+import { setCurrentPlayer, clearCurrentPlayer } from "../../slices/playerSlice";
 import { startPageLoading, stopPageLoading } from "../../slices/loadingSlice";
 import { fetchGet } from "../../utils/GeneralFunctions";
 import { apiUrls, playerPositions } from "../../constants";
@@ -9,16 +9,26 @@ import StepTitle from "../StepTitle";
 import Carousel from "react-elastic-carousel";
 import PlayerSelectionCard from "./PlayerSelectionCard";
 import Row from "react-bootstrap/Row";
+import { isEqual } from "lodash";
 import "../../styles/playerSelection.scss";
 
 const PlayerSelection = () => {
     const selectedCountry = useSelector((state) => state.country.selectedCountry);
     const countryPlayers = useSelector((state) => state.countryPlayers.countryPlayers)
     const dispatch = useDispatch();
+    const selectedCountryRef = useRef();
 
     useEffect(() => {
         if(selectedCountry){
             fetchPlayers();
+
+            console.log("selected country: ", selectedCountry.countryId);
+
+            if(!isEqual(selectedCountry !== selectedCountryRef.current)){
+                dispatch(clearCurrentPlayer());
+
+                selectedCountryRef.current = {...selectedCountry};
+            }
         }
     }, [selectedCountry]);
 
@@ -41,15 +51,6 @@ const PlayerSelection = () => {
                 }
             ));
 
-            // for(let player of playersResponse.data.data){
-            //     const playerStatsResponse = await fetchPlayerStatics(player.player_id);
-
-            //     if(playerStatsResponse.success){
-
-            //     }else{
-
-            //     }
-            // }
             dispatch(setCountryPlayers(countryPlayersData))
             dispatch(stopPageLoading());
         }else{
@@ -115,7 +116,9 @@ const PlayerSelection = () => {
                             }
                         </Carousel>
                     </Row>
-                ) : null
+                ) : (
+                    <div className="country-no-player-container">No player found in this country</div>
+                )
             }
         </>
     )

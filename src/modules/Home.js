@@ -1,4 +1,4 @@
-import { useState } from "react";
+import CountryAndPlayerSelectionWrapper from "../components/CountryAndPlayerSelectionWrapper";
 import CountrySelection from "../components/CountrySelection";
 import PlayerSelection from "../components/playerSelection/PlayerSelection";
 import RecruitPlayer from "../components/playerDetails/RecruitPlayer";
@@ -12,8 +12,9 @@ const Home = () => {
     return (
         <Container>
             <PageLoading />
-            <CountrySelection />
-            <PlayerSelection />
+            <CountryAndPlayerSelectionWrapper />
+            {/* <CountrySelection />
+            <PlayerSelection /> */}
             <RecruitPlayer />
             <PopupModal />
         </Container>

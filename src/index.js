@@ -1,6 +1,7 @@
 import ReactDOM from "react-dom";
 import Home from "./modules/Home";
 import MyTeam from "./modules/MyTeam";
+import Comparison from "./modules/Comparison";
 import NavigationBar from "./components/general/NavigationBar";
 import store from "./store";
 import { Provider } from "react-redux";
@@ -13,6 +14,7 @@ ReactDOM.render(
             <NavigationBar />
             <Switch>
                 <Route path="/team" exact component={MyTeam} />
+                <Route path="/compare" exact component={Comparison} />
                 <Route path="/home" exact component={Home} />
                 <Route path="/" exact component={Home} />
             </Switch>
