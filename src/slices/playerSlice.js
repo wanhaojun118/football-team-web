@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+/*** Redux store used by player details component (Recruit module) ***/
 const playerSlice = createSlice({
     name: "player",
     initialState: {

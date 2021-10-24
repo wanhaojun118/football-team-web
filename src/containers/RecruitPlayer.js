@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addPlayer } from "../../slices/playerSlice";
-import { setFirstCountry, setFirstPlayer, clearComparison } from "../../slices/comparisonSlice";
-import { showPopupModal, setTitle, setMessage } from "../../slices/popupModalSlice";
-import PlayerDetailsCard from "./PlayerDetailsCard";
-import StepTitle from "../StepTitle";
+import { addPlayer } from "../slices/playerSlice";
+import { setFirstCountry, setFirstPlayer, clearComparison } from "../slices/comparisonSlice";
+import { showPopupModal, setTitle, setMessage } from "../slices/popupModalSlice";
+import PlayerDetailsCard from "../components/playerDetails/PlayerDetailsCard";
+import StepTitle from "../components/StepTitle";
 import { Row, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
@@ -21,7 +21,7 @@ const RecruitPlayer = () => {
 
             if(similarPlayer){
                 dispatch(setTitle("Recruit Successful"));
-                dispatch(setMessage(`Congratulations, <b>${currentPlayer.name}</b> is now our team member!`));
+                dispatch(setMessage(`Congratulations, <b>${currentPlayer.name}</b> is now our team member! You may check team members in <b>MY TEAM</b> page.`));
     
                 dispatch(showPopupModal());
             }
@@ -46,7 +46,7 @@ const RecruitPlayer = () => {
             if(similarPlayer){
                 // Not allow to add same member into team
                 dispatch(setTitle("Error"));
-                dispatch(setMessage(`Cannot add <b>${currentPlayer.name}</b> as this player is already in our team.`));
+                dispatch(setMessage(`Cannot add <b>${currentPlayer.name}</b> as this player is already our team member.`));
 
                 dispatch(showPopupModal());
             }else{

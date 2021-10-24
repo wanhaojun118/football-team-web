@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+/*** Redux store used by popup modal component ***/
 const popupModalSlice = createSlice({
     name: "popupModal",
     initialState: {

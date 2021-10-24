@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+/*** Redux store used by Loading component ***/
 const loadingSlice = createSlice({
     name: "loading",
     initialState: {

@@ -1,7 +1,9 @@
+@import "variables";
+
 .step-title {
     font-size: 24px;
     font-weight: 600;
-    color: #000080;
+    color: $theme-color;
     margin-bottom: 20px;
 
     .title-line {

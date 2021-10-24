@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+/*** Redux store used by country players selection dropdown ***/
 const countryPlayersSlice = createSlice({
     name: "countryPlayers",
     initialState: {

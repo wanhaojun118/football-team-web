@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+/*** Redux store used by Comparison module ***/
 const comparisonSlice = createSlice({
     name: "comparison",
     initialState: {

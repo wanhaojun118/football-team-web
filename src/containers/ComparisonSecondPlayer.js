@@ -9,7 +9,12 @@ import PlayerSelection from "../components/playerSelection/PlayerSelection";
 import PlayerDetailsCard from "../components/playerDetails/PlayerDetailsCard";
 
 const ComparisonSecondPlayer = (props) => {
-    const { secondCountry, secondCountryPlayers, secondPlayer } = useSelector((state) => state.comparison);
+    const { 
+        firstPlayer, 
+        secondCountry, 
+        secondCountryPlayers, 
+        secondPlayer 
+    } = useSelector((state) => state.comparison);
     const dispatch = useDispatch();
 
     const selectCountry = (countryData) => dispatch(setSecondCountry(countryData));
@@ -51,36 +56,48 @@ const ComparisonSecondPlayer = (props) => {
         return new Date().getFullYear() - year;
     }
 
+    const isDuplicatePlayer = (playerId) => {
+        return playerId === firstPlayer.playerId;
+    }
+
     const selectPlayerHandler = async (playerId) => {
-        dispatch(startPageLoading());
-        const playerStatsResponse = await fetchGet(apiUrls.GET_PLAYER_STATISTICS(playerId), { include: "stats"});
-
-        if(playerStatsResponse.success){
-            const playerGeneralStats = secondCountryPlayers.find(player => playerStatsResponse.data?.data?.player_id === player.playerId);
-            const playerDetailsStats = playerStatsResponse.data?.data?.stats?.data[0];
-
-            const playerStats = {
-                ...playerGeneralStats,
-                appearences: playerDetailsStats?.appearences ?? null,
-                minutes: playerDetailsStats?.minutes ?? null,
-                goals: playerDetailsStats?.goals ?? null,
-                assists: playerDetailsStats?.assists ?? null,
-                saves: playerDetailsStats?.saves ?? null,
-                yellowCards: playerDetailsStats?.yellowcards ?? null,
-                redCards: playerDetailsStats?.redcards ?? null,
-                rating: playerDetailsStats?.rating ?? null
-            };
-
-            dispatch(setSecondPlayer(playerStats));
-
-            dispatch(stopPageLoading());
-        }else{
-            // Show error popup
+        // Check if is same player
+        if(isDuplicatePlayer(playerId)){
+            // If same player, then show error popup
             dispatch(setTitle("Error"));
-            dispatch(setMessage("Cannot get player's statistics data."));
+            dispatch(setMessage("Cannot compare with same player, please select another player."));
             dispatch(showPopupModal());
+        }else{
+            dispatch(startPageLoading());
+            const playerStatsResponse = await fetchGet(apiUrls.GET_PLAYER_STATISTICS(playerId), { include: "stats"});
 
-            dispatch(stopPageLoading());
+            if(playerStatsResponse.success){
+                const playerGeneralStats = secondCountryPlayers.find(player => playerStatsResponse.data?.data?.player_id === player.playerId);
+                const playerDetailsStats = playerStatsResponse.data?.data?.stats?.data[0];
+
+                const playerStats = {
+                    ...playerGeneralStats,
+                    appearences: playerDetailsStats?.appearences ?? null,
+                    minutes: playerDetailsStats?.minutes ?? null,
+                    goals: playerDetailsStats?.goals ?? null,
+                    assists: playerDetailsStats?.assists ?? null,
+                    saves: playerDetailsStats?.saves ?? null,
+                    yellowCards: playerDetailsStats?.yellowcards ?? null,
+                    redCards: playerDetailsStats?.redcards ?? null,
+                    rating: playerDetailsStats?.rating ?? null
+                };
+
+                dispatch(setSecondPlayer(playerStats));
+
+                dispatch(stopPageLoading());
+            }else{
+                // Show error popup
+                dispatch(setTitle("Error"));
+                dispatch(setMessage("Cannot get player's statistics data."));
+                dispatch(showPopupModal());
+
+                dispatch(stopPageLoading());
+            }
         }
     }
 

@@ -6,9 +6,9 @@ const NavigationBar = () => (
     <Navbar className="navigation-bar">
         <Container>
             <Nav>
-                <NavLink to="/recruit" className="navigation-link">Recruit</NavLink>
-                <NavLink to="/team" className="navigation-link">My Team</NavLink>
-                <NavLink to="/compare" className="navigation-link">1 on 1</NavLink>
+                <NavLink to="/team" className="navigation-link">MY TEAM</NavLink>
+                <NavLink to="/recruit" className="navigation-link">RECRUIT</NavLink>
+                <NavLink to="/compare" className="navigation-link">1 ON 1</NavLink>
             </Nav>
         </Container>
     </Navbar>

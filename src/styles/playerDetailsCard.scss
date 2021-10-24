@@ -1,5 +1,7 @@
+@import "variables";
+
 .player-details-card {
-    border: 1px solid #000080;
+    border: 1px solid $theme-color;
     border-radius: 10px;
     padding: 20px;
     font-weight: bold;
@@ -7,7 +9,7 @@
     position: relative;
 
     &.grey-background {
-        background-color: rgba(241, 241, 241, 0.7);
+        background-color: $container-background-color;
         border: none;
     }
 
@@ -55,14 +57,14 @@
         text-align: center;
         padding-top: 10px;
         padding-bottom: 10px;
-        border-left: 1px solid #000080;
+        border-left: 1px solid $theme-color;
 
         .general-details-section {
             margin-bottom: 20px;
 
             .player-details-row {
                 margin-bottom: 20px;
-                color: #000080;
+                color: $theme-color;
 
                 .player-details-name {
                     font-size: 20px;
@@ -94,7 +96,7 @@
 
         .details-separator {
             width: 100%;
-            border-top: 1px solid #000080;
+            border-top: 1px solid $theme-color;
         }
 
         .statistics-details-section {
@@ -111,7 +113,7 @@
 
                 .statistics-value {
                     font-size: 18px;
-                    color: #000080;
+                    color: $theme-color;
                 }
             }
         }

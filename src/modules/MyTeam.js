@@ -1,9 +1,8 @@
 import PageLoading from "../components/PageLoading";
-import CurrentCrew from "../components/CurrentCrew";
+import CurrentCrew from "../containers/CurrentCrew";
 import { Container } from "react-bootstrap";
-// import "../styles/common.scss";
-// import "../styles/normalizeBootstrap.scss";
 
+/*** MyTeam module: base component of "MY TEAM" page ***/
 const MyTeam = () => {
     return (
         <Container>

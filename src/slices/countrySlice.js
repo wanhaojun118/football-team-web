@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+/*** Redux store used by Country selection component ***/
 const countrySlice = createSlice({
     name: "country",
     initialState: {

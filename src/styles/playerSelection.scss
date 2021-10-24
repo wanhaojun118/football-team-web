@@ -1,3 +1,5 @@
+@import "variables";
+
 .rec-carousel-wrapper {
     position: relative;
 
@@ -30,13 +32,13 @@
     height: 300px;
     max-height: 300px;
     flex-direction: column;
-    border: 1px solid #000080;
+    border: 1px solid $theme-color;
     border-radius: 10px;
     padding: 20px;
     margin: 20px 0px;
 
     &:hover {
-        border: 2px solid #000080;
+        border: 2px solid $theme-color;
         transform: scale(1.1);
         cursor: pointer;
     }
@@ -80,7 +82,7 @@
 
                     &.player-position {
                         @media (max-width: 1199px) {
-                            color: #000080;
+                            color: $theme-color;
                         }
                     }
                 }
@@ -103,7 +105,7 @@
 
 .country-no-player-container {
     padding: 30px;
-    background-color: rgba(241, 241, 241, 0.7);
+    background-color: $container-background-color;
     border-radius: 10px;
     font-size: 20px;
     text-align: center;

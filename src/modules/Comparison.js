@@ -9,10 +9,9 @@ import ComparisonBarModal from "../components/popupModal/ComparisonBarModal";
 import ComparisonRadarModal from "../components/popupModal/ComparisonRadarModal";
 import { NavLink } from "react-router-dom";
 import { Container, Button } from "react-bootstrap";
-import "../styles/common.scss";
-import "../styles/normalizeBootstrap.scss";
 import "../styles/comparison.scss";
 
+/*** Comparison module: base component of "1 ON 1" page ***/
 const Comparison = () => {
     const { firstPlayer, secondPlayer } = useSelector((state) => state.comparison);
     const countryList = useSelector((state) => state.country.countryList);
@@ -52,7 +51,7 @@ const Comparison = () => {
             {
                 firstPlayer ? <ComparisonFirstPlayer player={firstPlayer} /> : (
                     <div className="no-player-container">
-                        <span className="no-player-message">No target player to compare with</span>
+                        <span className="no-player-message">No player to compare against, please select a player from <b>RECRUIT</b> page.</span>
                         <NavLink to="/recruit">
                             <Button className="no-player-navigation-button button-primary">
                                 Find Player

@@ -1,5 +1,7 @@
+@import "variables";
+
 .navigation-bar {
-    background-color: #000080;
+    background-color: $theme-color;
 
     .navbar-nav {
         display: flex;

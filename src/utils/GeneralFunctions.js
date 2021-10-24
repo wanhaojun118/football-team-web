@@ -1,6 +1,7 @@
 import axios from "axios";
 import * as Constants from "../constants";
 
+// For fetching GET request use, can be import and use by all components
 export const fetchGet = async (url, extraParams = null) => {
     let params = {
         api_token: process.env.REACT_APP_API_TOKEN,

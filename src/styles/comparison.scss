@@ -1,6 +1,8 @@
+@import "variables";
+
 .no-player-container {
     padding: 30px;
-    background-color: rgba(241, 241, 241, 0.7);
+    background-color: $container-background-color;
     border-radius: 10px;
     font-size: 20px;
     display: flex;
@@ -55,19 +57,8 @@
 
 .clear-comparison-button-container {
     margin-bottom: 20px;
-
-    .clear-comparison-button {
-        // background-color: #ff0000 !important;
-        // color: #fff !important;
-        // border-color: #ff0000 !important;
-
-        // &:hover {
-        //     background-color: #ff6347 !important;
-        //     border-color: #ff6347 !important;
-        // }
-    }
 }
 
 .comparison-bar-chart {
-    background-color: rgba(241, 241, 241, 0.7);
+    background-color: $container-background-color;
 }
