@@ -21,7 +21,7 @@ const RecruitPlayer = () => {
 
             if(similarPlayer){
                 dispatch(setTitle("Recruit Successful"));
-                dispatch(setMessage(`Congratulations, <b>${currentPlayer.name}</b> is now our team member! You may check team members in <b>MY TEAM</b> page.`));
+                dispatch(setMessage(`Congratulations, <b>${currentPlayer.name}</b> is now our team member! You may check current members in <b>MY TEAM</b> page.`));
     
                 dispatch(showPopupModal());
             }

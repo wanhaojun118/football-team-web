@@ -23,32 +23,32 @@ const Comparison = () => {
         <Container>
             <PageLoading />
             {
-                firstPlayer && secondPlayer ? (
-                    <div class="d-flex justify-content-center show-comparison-buttons-container">  
-                        <Button className="comparison-buttons button-secondary" onClick={() => setShowComparisonBar(true)}>Comparison Bar</Button>
-                        <Button className="comparison-buttons button-secondary" onClick={() => setShowComparisonRadar(true)}>Comparison Radar</Button>
-
-                        <ComparisonBarModal 
-                            show={showComparisonBar} 
-                            setShowComparisonBar={setShowComparisonBar} 
-                            firstPlayer={firstPlayer} 
-                            secondPlayer={secondPlayer} 
-                        />
-                        <ComparisonRadarModal 
-                            show={showComparisonRadar} 
-                            setShowComparisonRadar={setShowComparisonRadar} 
-                            firstPlayer={firstPlayer} 
-                            secondPlayer={secondPlayer}
-                        />
-                    </div>
-                ) : null
-            }
-            {
                 firstPlayer ? (
                     <>
                         <div class="d-flex justify-content-end clear-comparison-button-container">
                             <Button className="clear-comparison-button button-secondary" onClick={() => dispatch(clearComparison())}>Clear Comparison Data</Button>
                         </div>
+                        {
+                            secondPlayer ? (
+                                <div class="d-flex justify-content-center show-comparison-buttons-container">  
+                                    <Button className="comparison-buttons button-secondary" onClick={() => setShowComparisonBar(true)}>Comparison Bar</Button>
+                                    <Button className="comparison-buttons button-secondary" onClick={() => setShowComparisonRadar(true)}>Comparison Radar</Button>
+
+                                    <ComparisonBarModal 
+                                        show={showComparisonBar} 
+                                        setShowComparisonBar={setShowComparisonBar} 
+                                        firstPlayer={firstPlayer} 
+                                        secondPlayer={secondPlayer} 
+                                    />
+                                    <ComparisonRadarModal 
+                                        show={showComparisonRadar} 
+                                        setShowComparisonRadar={setShowComparisonRadar} 
+                                        firstPlayer={firstPlayer} 
+                                        secondPlayer={secondPlayer}
+                                    />
+                                </div>
+                            ) : null
+                        }
                         <ComparisonFirstPlayer player={firstPlayer} />
                     </>
                 ) : (
