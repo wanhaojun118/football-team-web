@@ -24,34 +24,36 @@ const Comparison = () => {
             <PageLoading />
             {
                 firstPlayer && secondPlayer ? (
+                    <div class="d-flex justify-content-center show-comparison-buttons-container">  
+                        <Button className="comparison-buttons button-secondary" onClick={() => setShowComparisonBar(true)}>Comparison Bar</Button>
+                        <Button className="comparison-buttons button-secondary" onClick={() => setShowComparisonRadar(true)}>Comparison Radar</Button>
+
+                        <ComparisonBarModal 
+                            show={showComparisonBar} 
+                            setShowComparisonBar={setShowComparisonBar} 
+                            firstPlayer={firstPlayer} 
+                            secondPlayer={secondPlayer} 
+                        />
+                        <ComparisonRadarModal 
+                            show={showComparisonRadar} 
+                            setShowComparisonRadar={setShowComparisonRadar} 
+                            firstPlayer={firstPlayer} 
+                            secondPlayer={secondPlayer}
+                        />
+                    </div>
+                ) : null
+            }
+            {
+                firstPlayer ? (
                     <>
                         <div class="d-flex justify-content-end clear-comparison-button-container">
                             <Button className="clear-comparison-button button-secondary" onClick={() => dispatch(clearComparison())}>Clear Comparison</Button>
                         </div>
-                        <div class="d-flex justify-content-center show-comparison-buttons-container">  
-                            <Button className="comparison-buttons button-secondary" onClick={() => setShowComparisonBar(true)}>Comparison Bar</Button>
-                            <Button className="comparison-buttons button-secondary" onClick={() => setShowComparisonRadar(true)}>Comparison Radar</Button>
-
-                            <ComparisonBarModal 
-                                show={showComparisonBar} 
-                                setShowComparisonBar={setShowComparisonBar} 
-                                firstPlayer={firstPlayer} 
-                                secondPlayer={secondPlayer} 
-                            />
-                            <ComparisonRadarModal 
-                                show={showComparisonRadar} 
-                                setShowComparisonRadar={setShowComparisonRadar} 
-                                firstPlayer={firstPlayer} 
-                                secondPlayer={secondPlayer}
-                            />
-                        </div>
+                        <ComparisonFirstPlayer player={firstPlayer} />
                     </>
-                ) : null
-            }
-            {
-                firstPlayer ? <ComparisonFirstPlayer player={firstPlayer} /> : (
+                ) : (
                     <div className="no-player-container">
-                        <span className="no-player-message">No player to compare against, please select a player from <b>RECRUIT</b> page.</span>
+                        <span className="no-player-message">No player to compare against, please select a player from <b>RECRUIT</b> page to start comparing.</span>
                         <NavLink to="/recruit">
                             <Button className="no-player-navigation-button button-primary">
                                 Find Player
