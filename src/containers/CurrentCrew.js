@@ -52,7 +52,7 @@ const CurrentCrew = () => {
                     ))
                 ) : (
                     <div className="no-player-container">
-                        <span className="no-player-message">There is no member at the team now.</span>
+                        <span className="no-player-message">There is no member in the team.</span>
                         <NavLink to="/recruit">
                             <Button className="no-player-navigation-button button-primary">
                                 Recruit Player

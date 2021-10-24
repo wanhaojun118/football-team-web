@@ -47,7 +47,7 @@ const Comparison = () => {
                 firstPlayer ? (
                     <>
                         <div class="d-flex justify-content-end clear-comparison-button-container">
-                            <Button className="clear-comparison-button button-secondary" onClick={() => dispatch(clearComparison())}>Clear Comparison</Button>
+                            <Button className="clear-comparison-button button-secondary" onClick={() => dispatch(clearComparison())}>Clear Comparison Data</Button>
                         </div>
                         <ComparisonFirstPlayer player={firstPlayer} />
                     </>
