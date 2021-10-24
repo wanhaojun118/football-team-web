@@ -6,5 +6,5 @@ After that, start the app by running this command:
 
 ### `npm start`
 
-The app will be started in development mode\
+The app will start in development mode\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
