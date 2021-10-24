@@ -16,11 +16,7 @@ const playerSlice = createSlice({
         clearCurrentPlayer: (state) => {
             state.currentPlayer = undefined;
         },
-        // updateTeamPlayer: (state, action) => {
-        //     state.currentCrew = action.payload;
-        // }
         removePlayer: (state, action) => {
-            console.log("state current crew: ", ...state.currentCrew);
             state.currentCrew = [...state.currentCrew].filter(player => player.playerId !== action.payload);
         }
     }

@@ -10,7 +10,7 @@ const PlayerDetailsCard = (props) => {
     const selectedCountry = useSelector((state) => state.country.selectedCountry);
 
     return (
-        <Col xs={12} className={`player-details-card ${props.isCurrentCrewPage ? "grey-background" : ""}`}>
+        <Col xs={12} className={`player-details-card ${props.isCurrentCrewPage || props.isComparisonPage ? "grey-background" : ""}`}>
             {
                 props.removable ? (
                     <RemovePlayerIcon removePlayerHandler={props.removePlayerHandler} />
@@ -27,8 +27,7 @@ const PlayerDetailsCard = (props) => {
                             true ? (
                                 <ReactStars 
                                     count={5} 
-                                    // value={(parseFloat(props.player.rating) / 2).toFixed(2)}
-                                    value={3.5}
+                                    value={(parseFloat(props.player.rating) / 2).toFixed(2)} // The data from API is always 0 - 10 but library only accepts 0 - 5, so has to divide by 2
                                     size={30}
                                     edit={false}
                                     isHalf={true}
@@ -48,7 +47,7 @@ const PlayerDetailsCard = (props) => {
                             <Col className="d-flex justify-content-center align-items-center">
                                 <div className="player-details-country-name">{selectedCountry.countryName}</div>
                                 <div>
-                                    <img src={props.isCurrentCrewPage ? props.player.countryImagePath : selectedCountry.countryImage} className="player-details-country-flag" alt="" />
+                                    <img src={props.isCurrentCrewPage || props.isComparisonPage ? props.player.countryImagePath : selectedCountry.countryImage} className="player-details-country-flag" alt="" />
                                 </div>
                             </Col>
                         </Row>

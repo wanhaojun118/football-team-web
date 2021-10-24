@@ -1,6 +1,4 @@
-import CountryAndPlayerSelectionWrapper from "../components/CountryAndPlayerSelectionWrapper";
-import CountrySelection from "../components/CountrySelection";
-import PlayerSelection from "../components/playerSelection/PlayerSelection";
+import CountryAndPlayerSelectionWrapper from "../containers/CountryAndPlayerSelectionWrapper";
 import RecruitPlayer from "../components/playerDetails/RecruitPlayer";
 import PageLoading from "../components/PageLoading";
 import PopupModal from "../components/popupModal/PopupModal";
@@ -8,17 +6,15 @@ import Container from "react-bootstrap/Container";
 import "../styles/common.scss";
 import "../styles/normalizeBootstrap.scss";
 
-const Home = () => {
+const Recruit = () => {
     return (
         <Container>
             <PageLoading />
             <CountryAndPlayerSelectionWrapper />
-            {/* <CountrySelection />
-            <PlayerSelection /> */}
             <RecruitPlayer />
             <PopupModal />
         </Container>
     );
 }
 
-export default Home;
+export default Recruit;

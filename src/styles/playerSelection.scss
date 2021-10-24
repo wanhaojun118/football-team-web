@@ -53,8 +53,6 @@
     }
 
     .player-selection-card-details {
-        // height: 170px;
-        // max-height: 170px;
         overflow-x: hidden;
         overflow-y: auto;
         padding-right: 3px;
@@ -62,9 +60,13 @@
         .row {
             margin-bottom: 8px;
 
+            .details-value {
+                font-weight: bold;
+            }
+
             .vertical-details {
                 .details-value {
-                    font-weight: 500;
+                    font-weight: bold;
     
                     .unknown-details {
                         color: #a9a9a9;

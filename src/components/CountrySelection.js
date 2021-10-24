@@ -30,11 +30,8 @@ const CountrySelection = (props) => {
     const [countryOptions, setCountryOptions] = useState();
 
     useEffect(() => {
-        props.fetchAllCountries();
-    }, []);
-
-    useEffect(() => {
         if(props.countryList && props.countryList.length > 0){
+            // Format and sort country list
             const countryOptions = props.countryList.map(country => (
                 {
                     value: {
@@ -47,6 +44,7 @@ const CountrySelection = (props) => {
                 }
             )).sort((countryA, countryB) => countryA.label > countryB.label ? 1 : -1);
 
+            // Update country options for React-Select library use
             setCountryOptions(countryOptions);
         }
     }, [props.countryList]);

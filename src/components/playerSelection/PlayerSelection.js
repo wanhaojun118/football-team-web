@@ -52,7 +52,7 @@ const PlayerSelection = (props) => {
                                 }
                             </Carousel>
                         </Row>
-                    ) : (<div className="country-no-player-container">No player found in this country</div>)
+                    ) : (<div className="country-no-player-container">No player found from this country</div>)
                 : null
             }
         </>

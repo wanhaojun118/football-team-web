@@ -1,20 +1,24 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setCountryList, setCountry } from "../slices/countrySlice";
 import { setCountryPlayers } from "../slices/countryPlayersSlice";
-import { setCurrentPlayer, clearCurrentPlayer } from "../slices/playerSlice";
+import { setCurrentPlayer } from "../slices/playerSlice";
 import { startPageLoading, stopPageLoading } from "../slices/loadingSlice";
-import { showPopupModal, hidePopupModal, setTitle, setMessage } from "../slices/popupModalSlice";
+import { showPopupModal, setTitle, setMessage } from "../slices/popupModalSlice";
 import { fetchGet } from "../utils/GeneralFunctions";
 import { apiUrls, playerPositions } from "../constants";
-import CountrySelection from "./CountrySelection";
-import PlayerSelection from "./playerSelection/PlayerSelection";
+import CountrySelection from "../components/CountrySelection";
+import PlayerSelection from "../components/playerSelection/PlayerSelection";
 
 const CountryAndPlayerSelectionWrapper = () => {
     const countryList = useSelector((state) => state.country.countryList);
     const selectedCountry = useSelector((state) => state.country.selectedCountry);
     const countryPlayers = useSelector((state) => state.countryPlayers.countryPlayers);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        fetchAllCountries();
+    }, []);
 
     const fetchAllCountries = async () => {
         dispatch(startPageLoading());
@@ -33,12 +37,12 @@ const CountryAndPlayerSelectionWrapper = () => {
             dispatch(setCountryList(countryData));
             dispatch(stopPageLoading());
         }else{
+            // Show error popup
             dispatch(setTitle("Error"));
             dispatch(setMessage("Cannot get country list."));
+            dispatch(showPopupModal());
 
             dispatch(stopPageLoading());
-
-            dispatch(showPopupModal());
         }
     }
 
@@ -66,6 +70,11 @@ const CountryAndPlayerSelectionWrapper = () => {
             dispatch(setCountryPlayers(countryPlayersData))
             dispatch(stopPageLoading());
         }else{
+            // Show error popup
+            dispatch(setTitle("Error"));
+            dispatch(setMessage("Cannot get players from this country."));
+            dispatch(showPopupModal());
+
             dispatch(stopPageLoading());
         }
     }
@@ -78,7 +87,7 @@ const CountryAndPlayerSelectionWrapper = () => {
 
     const selectPlayerHandler = async (playerId) => {
         dispatch(startPageLoading());
-        const playerStatsResponse = await fetchGet(apiUrls.GET_PLAYER_STATISTICS(playerId), { include: "stats"} );
+        const playerStatsResponse = await fetchGet(apiUrls.GET_PLAYER_STATISTICS(playerId), { include: "stats"});
 
         if(playerStatsResponse.success){
             const playerGeneralStats = countryPlayers.find(player => playerStatsResponse.data?.data?.player_id === player.playerId);
@@ -100,6 +109,11 @@ const CountryAndPlayerSelectionWrapper = () => {
 
             dispatch(stopPageLoading());
         }else{
+            // Show error popup
+            dispatch(setTitle("Error"));
+            dispatch(setMessage("Cannot get player's statistics data."));
+            dispatch(showPopupModal());
+
             dispatch(stopPageLoading());
         }
     }
@@ -108,9 +122,9 @@ const CountryAndPlayerSelectionWrapper = () => {
         <>
             <CountrySelection 
                 countryList={countryList}
-                fetchAllCountries={fetchAllCountries}
                 selectedCountry={selectedCountry}
-                selectCountry={selectCountry} />
+                selectCountry={selectCountry} 
+            />
             <PlayerSelection 
                 selectedCountry={selectedCountry}
                 countryPlayers={countryPlayers}

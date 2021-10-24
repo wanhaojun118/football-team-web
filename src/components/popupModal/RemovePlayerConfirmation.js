@@ -12,6 +12,7 @@ const RemovePlayerConfirmation = (props) => {
             </Modal.Header>
             <Modal.Body>Are you sure to remove this player?</Modal.Body>
             <Modal.Footer>
+                <Button className="button-secondary" onClick={props.closeModal}>Cancel</Button>
                 <Button className="button-primary" onClick={props.confirmRemovePlayer}>OK</Button>
             </Modal.Footer>
         </Modal>

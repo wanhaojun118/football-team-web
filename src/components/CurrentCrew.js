@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removePlayer } from "../slices/playerSlice";
 import { startPageLoading, stopPageLoading } from "../slices/loadingSlice";
@@ -32,6 +32,13 @@ const CurrentCrew = () => {
 
     return (
         <>
+            <div className="team-formation-status">
+                {
+                    teamPlayers && teamPlayers.length >= 11 
+                        ? "Congratulations, a team of 11 members is ready!"
+                        : `Team available slot(s): ${11 - teamPlayers.length }`
+                } 
+            </div>
             {
                 teamPlayers && teamPlayers.length > 0 ? (
                     teamPlayers.map(player => (
@@ -46,7 +53,7 @@ const CurrentCrew = () => {
                 ) : (
                     <div className="no-player-container">
                         <span className="no-player-message">There is no member at the team now.</span>
-                        <NavLink to="/home">
+                        <NavLink to="/recruit">
                             <Button className="no-player-navigation-button button-primary">
                                 Recruit Player
                             </Button>
@@ -58,6 +65,7 @@ const CurrentCrew = () => {
                 show={showModal} 
                 playerId={removePlayerId}
                 confirmRemovePlayer={confirmRemovePlayer} 
+                closeModal={() => setShowModal(false)}
             />
         </>
     )

@@ -19,21 +19,21 @@ const PlayerSelectionCard = (props) => {
                     {
                         !props.isVertical ? (
                             <>
-                                <Col xl={12} xs={2} className="row">
+                                <Col xl={12} className="row">
                                     { !props.isVertical ? <Col xl={4} xs={12}>Age: </Col> : null }
                                     <Col className="details-value">
                                         <OptionalDetail value={props.details.age} />
                                     </Col>
                                 </Col>
 
-                                <Col xl={12} xs={4} className="row">
+                                <Col xl={12} className="row">
                                     { !props.isVertical ? <Col xl={4} xs={12}>Weight:</Col> : null }
                                     <Col className="details-value">
                                         <OptionalDetail value={props.details.weight} />
                                     </Col>
                                 </Col>
 
-                                <Col xl={12} xs={4} className="row">
+                                <Col xl={12} className="row">
                                     { !props.isVertical ? <Col xl={4} xs={12}>Height:</Col> : null }
                                     <Col className="details-value">
                                         <OptionalDetail value={props.details.height} />

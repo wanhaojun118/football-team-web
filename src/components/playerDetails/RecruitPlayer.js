@@ -1,15 +1,19 @@
 import { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addPlayer } from "../../slices/playerSlice";
+import { setFirstCountry, setFirstPlayer, clearComparison } from "../../slices/comparisonSlice";
 import { showPopupModal, setTitle, setMessage } from "../../slices/popupModalSlice";
 import PlayerDetailsCard from "./PlayerDetailsCard";
 import StepTitle from "../StepTitle";
 import { Row, Button } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 
 const RecruitPlayer = () => {
+    const selectedCountry = useSelector((state) => state.country.selectedCountry);
     const { currentPlayer, currentCrew } = useSelector((state) => state.player);
     const dispatch = useDispatch();
     const currentCrewMemberCount = useRef(currentCrew.length);
+    const history = useHistory();
 
     useEffect(() => {
         if(currentCrewMemberCount.current !== currentCrew.length){
@@ -24,7 +28,6 @@ const RecruitPlayer = () => {
 
             currentCrewMemberCount.current = currentCrew.length;
         }
-        
     }, [currentCrew]);
 
     const recruitPlayerHandler = (currentPlayer) => {
@@ -53,6 +56,20 @@ const RecruitPlayer = () => {
         }
     }
 
+    const setComparisonTarget = () => {
+        // Clear comparison data
+        dispatch(clearComparison());
+        
+        // Set targeted comparison player's country
+        dispatch(setFirstCountry({...selectedCountry}));
+
+        // Set targeted comparison player
+        dispatch(setFirstPlayer({...currentPlayer}));
+
+        // Redirect to comparison page
+        history.push("/compare");
+    }
+
     return (
         <>
             {
@@ -61,6 +78,7 @@ const RecruitPlayer = () => {
                         <StepTitle title="Recruit This Player" />
                         <PlayerDetailsCard player={currentPlayer} />
                         <div className="recruit-button-container">
+                            <Button className="compare-button button-secondary" onClick={setComparisonTarget}>Compare</Button>
                             <Button className="recruit-button button-primary" onClick={() => recruitPlayerHandler(currentPlayer)}>Recruit</Button>
                         </div>
                     </Row>

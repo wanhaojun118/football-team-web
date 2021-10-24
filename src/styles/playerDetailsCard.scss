@@ -128,7 +128,21 @@
     padding-left: 0px !important;
     padding-right: 0px !important;
 
+    .compare-button {
+        font-size: 20px !important;
+        margin-right: 8px;
+
+        @media (max-width: 991px) {
+            margin-right: 0px;
+            margin-bottom: 8px;
+        }
+    }
+
     .recruit-button {
         font-size: 20px !important;
+    }
+
+    @media (max-width: 991px) {
+        flex-direction: column;
     }
 }
